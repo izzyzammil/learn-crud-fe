@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ProductList = () => {
+export const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
@@ -67,5 +67,3 @@ const ProductList = () => {
     </div>
   );
 };
-
-export default ProductList;
