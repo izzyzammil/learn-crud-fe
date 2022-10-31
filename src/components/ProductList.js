@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   const getProducts = async () => {
     const response = await axios.get("http://localhost:5000/products");
     setProducts(response.data);
   };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   const deleteProduct = async (productId) => {
     try {

@@ -22,7 +22,7 @@ export const EditProduct = () => {
   }, []);
 
   const loadImage = (e) => {
-    const image = e.target.file[0];
+    const image = e.target.files[0];
     setFile(image);
     setPreview(URL.createObjectURL(image));
   };
@@ -35,7 +35,7 @@ export const EditProduct = () => {
 
     try {
       await axios.patch(`http://localhost:5000/products/${id}`, formData, {
-        headers: { "Content-type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/");
     } catch (error) {
@@ -48,13 +48,10 @@ export const EditProduct = () => {
       <div className="column is-half">
         <form onSubmit={updateProduct}>
           <div className="field">
-            <label className="label" htmlFor="product-name">
-              Product Name
-            </label>
+            <label className="label">Product Name</label>
             <div className="control">
               <input
                 type="text"
-                id="product-name"
                 className="input"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -82,7 +79,7 @@ export const EditProduct = () => {
           </div>
 
           {preview ? (
-            <figure className="image is-128x128">
+            <figure className="image is-128x128 mb-3">
               <img src={preview} alt="preview-img" />
             </figure>
           ) : (
